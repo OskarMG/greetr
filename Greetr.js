@@ -56,6 +56,17 @@
             // 'this' refers to the calling object at execution time
             // makes the method chainable
             return this;
+        },
+        setGreetIn: function(element, formal) {
+            if (!$) { throw "jQuery didn't load"; }
+            if (!element) { throw "Missing element selector"; }
+            
+            let msg = formal ? this.formalGreeting() : this.greeting();
+            $(element)[0].innerText = msg;
+            
+            // 'this' refers to the calling object at execution time
+            // makes the method chainable
+            return this;
         }
     };
     
@@ -64,6 +75,8 @@
         self.firstname = firstname || '';
         self.lastname = lastname || '';
         self.language = language || 'en';
+        
+        self.validate();
     };
     
     Greetr.init.prototype = Greetr.prototype;
